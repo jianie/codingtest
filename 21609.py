@@ -100,11 +100,11 @@ while True:
   group = [] # 그룹 리스트
   for i in range(N):
     for j in range(N):
-      if block[i][j] >= 1 and not visited[i][j]:
+      if block[i][j] >= 1 and not visited[i][j]: # 탐색 안한 일반 블럭 위치 i,j
         visited[i][j] = 1
         find_group = find_big_block(i, j, block[i][j]) # 블록 그룹 찾기
-        if find_group[0] >= 2: # 2 이상일 때
-          group.append(find_group) # 그룹 리스트에 추ㄱ
+        if find_group[0] >= 2: # 2 이상일 때      => 2개 블록 이상이어야 블록 그룹이니까
+          group.append(find_group) # 그룹 리스트에 추가
 
   group.sort(reverse=True) # 그룹 크기, 무지개 블록 수, 기준 블록 순으로 정렬
 

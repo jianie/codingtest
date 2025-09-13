@@ -33,17 +33,38 @@ fish = [list(map(int, input().split())) for _ in range(M)]  # fx, fx 위치와, 
 
 s_x, s_y = map(int, input().split())  # 상어 위치
 
-# 방향
-dx = [0, -1, -1, -1, 0, 1, 1, 1]
-dy = [-1, -1, 0, 1, 1, 1, 0, -1]
+# 방향- 0번째 그냥 0으로 채움
+dx = [0,0, -1, -1, -1, 0, 1, 1, 1]
+dy = [0,-1, -1, 0, 1, 1, 1, 0, -1]
 
 # 물고기 냄새 표시
 smell = [[0] * 4 for _ in range(4)]
 
 
-def move_fish(fish):
-    global smell
-    for ins in fish:
+def move_fish(fishes):
+    global smell,s_x,s_y
+
+    new_fish=[]
+    for f in fishes:    #물고기들을 한마리씩 이동
+
+        direct=f[2]
+        nx=f[0]+dx[direct]
+        ny=f[1]+dy[direct]
+
+        while not 0<=nx<4 or 0<=ny<4 or smell[nx][ny]>0 or (nx==s_x and ny==s_y):
+            direct=(direct+1)%8
+
+            if direct==f[2]:
+                break
+
+        new_fish.append([f[0]+dx[direct],f[1]+dy[direct],direct])
+
+    return new_fish
+
+
+
+
+
 
 
 def move_shark(s_x, s_y, fish):

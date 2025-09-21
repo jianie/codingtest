@@ -37,11 +37,33 @@ def operation_R(board):
             if num == 0:
                 continue
             count_dict[num] = count_dict.get(num, 0) + 1
+
+            '''get(key, default)는 딕셔너리에서 key에 해당하는 값을 가져오는 함수이다.
+
+            만약 key가 딕셔너리에 없으면, 기본값 default를 반환한다.
+            
+            예를 들어, count_dict.get(num, 0)는 num이라는 키의 값을 가져오는데, 없으면 0을 반환한다.
+            '''
         # 등장 횟수 오름차순, 숫자 오름차순 정렬
         sorted_items = sorted(count_dict.items(), key=lambda x: (x[1], x[0]))
+
+        '''
+        count_dict.items()는 딕셔너리의 각 (키, 값) 쌍을 튜플 리스트 형태로 반환한다. 예: [(숫자1, 횟수1), (숫자2, 횟수2), ...]
+
+        sorted()는 리스트를 특정 기준으로 정렬해 새 리스트를 반환하는 함수이다.
+        
+        key=lambda x: (x, x)는 정렬 기준을 지정한다.
+        
+        lambda x: (x, x)는 익명 함수로, 튜플 (횟수, 숫자)를 반환한다.
+        
+        그래서 정렬 기준은 등장 횟수(x) 오름차순 → 숫자(x) 오름차순 이다.
+        
+        즉, 숫자와 등장횟수 튜플을 "등장 횟수, 숫자 순서"로 정렬한다는 뜻이다.
+        
+        '''
         new_row = []
         for num, cnt in sorted_items:
-            new_row.extend([num, cnt])
+            new_row.extend([num, cnt]) ## extend() 함수는 기존 리스트에 이어 붙인다
         max_len = max(max_len, len(new_row))
         new_board.append(new_row)
     max_len = min(max_len, 100)  # 최대 길이 100 제한

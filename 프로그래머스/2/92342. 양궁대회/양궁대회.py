@@ -31,7 +31,7 @@ def solution(n, info):
                     
                 elif gap == max_gap: # 가장 낮은 점수를 많이 맞힌 경우로 업데이트
                     for i in range(len(score)):
-                        if answer[i] > 0:
+                        if answer[i] > 0: # 가장 낮은 점수 인덱스 업데이트
                             max_i_1 = i
                         if score[i] > 0:
                             max_i_2 = i
@@ -46,9 +46,9 @@ def solution(n, info):
             dfs(L+1, cnt-(info[L]+1))
             score[L]=0
             
-        dfs(L+1, cnt)
+        dfs(L+1, cnt) # 아예 안맞추는 경우는 무조건 탐색 
     
-    dfs(0,n)
+    dfs(0,n) #0: 탐색할 점수판 10-0, n: 남은 화살갯수
     
     return answer
     
